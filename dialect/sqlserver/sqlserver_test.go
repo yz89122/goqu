@@ -7,12 +7,12 @@ import (
 	"testing"
 	"time"
 
-	"github.com/doug-martin/goqu/v9/dialect/mysql"
+	"github.com/yz89122/goqu/v10/dialect/mysql"
 
 	_ "github.com/denisenkom/go-mssqldb"
-	"github.com/doug-martin/goqu/v9"
-	_ "github.com/doug-martin/goqu/v9/dialect/sqlserver"
 	"github.com/stretchr/testify/suite"
+	"github.com/yz89122/goqu/v10"
+	_ "github.com/yz89122/goqu/v10/dialect/sqlserver"
 )
 
 const (
@@ -356,11 +356,11 @@ func (sst *sqlserverTest) TestInsert() {
 		sst.Equal(entries[i]["Float"], e.Float)
 		sst.Equal(entries[i]["String"], e.String)
 		sst.Equal(
-			entries[i]["Time"].(time.Time).UTC().Format(mysql.DialectOptions().TimeFormat),
+			entries[i]["Time"].(time.Time).UTC().Format(mysql.DialectOptions().TimeFormat), // nolint:forcetypeassert
 			e.Time.Format(mysql.DialectOptions().TimeFormat),
 		)
 		sst.Equal(entries[i]["Bool"], e.Bool)
-		sst.Equal([]byte(entries[i]["String"].(string)), e.Bytes)
+		sst.Equal([]byte(entries[i]["String"].(string)), e.Bytes) // nolint:forcetypeassert
 	}
 
 	_, err = ds.Insert().Rows(

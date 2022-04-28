@@ -3,8 +3,8 @@ package exp_test
 import (
 	"testing"
 
-	"github.com/doug-martin/goqu/v9/exp"
 	"github.com/stretchr/testify/suite"
+	"github.com/yz89122/goqu/v10/exp"
 )
 
 type windowExpressionTest struct {
@@ -41,7 +41,7 @@ func (wet *windowExpressionTest) TestPartitionCols() {
 	w := exp.NewWindowExpression(exp.NewIdentifierExpression("", "", "w"), nil, cols, nil)
 
 	wet.Equal(cols, w.PartitionCols())
-	wet.Equal(cols, w.Clone().(exp.WindowExpression).PartitionCols())
+	wet.Equal(cols, w.Clone().(exp.WindowExpression).PartitionCols()) // nolint:forcetypeassert
 }
 
 func (wet *windowExpressionTest) TestOrderCols() {
@@ -49,7 +49,7 @@ func (wet *windowExpressionTest) TestOrderCols() {
 	w := exp.NewWindowExpression(exp.NewIdentifierExpression("", "", "w"), nil, nil, cols)
 
 	wet.Equal(cols, w.OrderCols())
-	wet.Equal(cols, w.Clone().(exp.WindowExpression).OrderCols())
+	wet.Equal(cols, w.Clone().(exp.WindowExpression).OrderCols()) // nolint:forcetypeassert
 }
 
 func (wet *windowExpressionTest) TestPartitionBy() {

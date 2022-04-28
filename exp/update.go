@@ -4,8 +4,8 @@ import (
 	"reflect"
 	"sort"
 
-	"github.com/doug-martin/goqu/v9/internal/errors"
-	"github.com/doug-martin/goqu/v9/internal/util"
+	"github.com/yz89122/goqu/v10/internal/errors"
+	"github.com/yz89122/goqu/v10/internal/util"
 )
 
 type (
@@ -57,7 +57,7 @@ func (u update) Expression() Expression {
 }
 
 func (u update) Clone() Expression {
-	return update{col: u.col.Clone().(IdentifierExpression), val: u.val}
+	return update{col: u.col.Clone().(IdentifierExpression), val: u.val} // nolint:forcetypeassert
 }
 
 func (u update) Col() IdentifierExpression {

@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/doug-martin/goqu/v9/exp"
+	"github.com/yz89122/goqu/v10/exp"
 )
 
 type (

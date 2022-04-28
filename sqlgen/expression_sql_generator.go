@@ -7,10 +7,10 @@ import (
 	"time"
 	"unicode/utf8"
 
-	"github.com/doug-martin/goqu/v9/exp"
-	"github.com/doug-martin/goqu/v9/internal/errors"
-	"github.com/doug-martin/goqu/v9/internal/sb"
-	"github.com/doug-martin/goqu/v9/internal/util"
+	"github.com/yz89122/goqu/v10/exp"
+	"github.com/yz89122/goqu/v10/internal/errors"
+	"github.com/yz89122/goqu/v10/internal/sb"
+	"github.com/yz89122/goqu/v10/internal/util"
 )
 
 type (
@@ -22,7 +22,7 @@ type (
 	}
 	// The default adapter. This class should be used when building a new adapter. When creating a new adapter you can
 	// either override methods, or more typically update default values.
-	// See (github.com/doug-martin/goqu/dialect/postgres)
+	// See (github.com/yz89122/goqu/v10/dialect/postgres)
 	expressionSQLGenerator struct {
 		dialect        string
 		dialectOptions *SQLDialectOptions
@@ -211,7 +211,7 @@ func (esg *expressionSQLGenerator) expressionSQL(b sb.SQLBuilder, expression exp
 func (esg *expressionSQLGenerator) placeHolderSQL(b sb.SQLBuilder, i interface{}) {
 	b.Write(esg.dialectOptions.PlaceHolderFragment)
 	if esg.dialectOptions.IncludePlaceholderNum {
-		b.WriteStrings(strconv.FormatInt(int64(b.CurrentArgPosition()), 10))
+		b.WriteStrings(strconv.FormatInt(int64(b.CurrentArgPosition()), 10)) // nolint:gomnd
 	}
 	b.WriteArg(i)
 }
@@ -314,7 +314,7 @@ func (esg *expressionSQLGenerator) literalFloat(b sb.SQLBuilder, f float64) {
 		esg.placeHolderSQL(b, f)
 		return
 	}
-	b.WriteStrings(strconv.FormatFloat(f, 'f', -1, 64))
+	b.WriteStrings(strconv.FormatFloat(f, 'f', -1, 64)) // nolint:gomnd
 }
 
 // Generates SQL for an int value
@@ -323,7 +323,7 @@ func (esg *expressionSQLGenerator) literalInt(b sb.SQLBuilder, i int64) {
 		esg.placeHolderSQL(b, i)
 		return
 	}
-	b.WriteStrings(strconv.FormatInt(i, 10))
+	b.WriteStrings(strconv.FormatInt(i, 10)) // nolint:gomnd
 }
 
 // Generates SQL for a string

@@ -5,13 +5,13 @@ import (
 	"time"
 
 	"github.com/DATA-DOG/go-sqlmock"
-	"github.com/doug-martin/goqu/v9"
-	"github.com/doug-martin/goqu/v9/exp"
-	"github.com/doug-martin/goqu/v9/internal/errors"
-	"github.com/doug-martin/goqu/v9/internal/sb"
-	"github.com/doug-martin/goqu/v9/mocks"
 	"github.com/stretchr/testify/mock"
 	"github.com/stretchr/testify/suite"
+	"github.com/yz89122/goqu/v10"
+	"github.com/yz89122/goqu/v10/exp"
+	"github.com/yz89122/goqu/v10/internal/errors"
+	"github.com/yz89122/goqu/v10/internal/sb"
+	"github.com/yz89122/goqu/v10/mocks"
 )
 
 type (
@@ -220,17 +220,17 @@ func (ids *insertDatasetSuite) TestFromQueryDialectInheritance() {
 
 	ids.Run("ok, default dialect is replaced with insert dialect", func() {
 		bd := goqu.Insert("items").SetDialect(md).FromQuery(goqu.From("other_items"))
-		ids.Require().Equal(md, bd.GetClauses().From().(*goqu.SelectDataset).Dialect())
+		ids.Require().Equal(md, bd.GetClauses().From().(*goqu.SelectDataset).Dialect()) // nolint:forcetypeassert
 	})
 
 	ids.Run("ok, insert and select dialects coincide", func() {
 		bd := goqu.Insert("items").SetDialect(md).FromQuery(goqu.From("other_items").SetDialect(md))
-		ids.Require().Equal(md, bd.GetClauses().From().(*goqu.SelectDataset).Dialect())
+		ids.Require().Equal(md, bd.GetClauses().From().(*goqu.SelectDataset).Dialect()) // nolint:forcetypeassert
 	})
 
 	ids.Run("ok, insert and select dialects are default", func() {
 		bd := goqu.Insert("items").FromQuery(goqu.From("other_items"))
-		ids.Require().Equal(goqu.GetDialect("default"), bd.GetClauses().From().(*goqu.SelectDataset).Dialect())
+		ids.Require().Equal(goqu.GetDialect("default"), bd.GetClauses().From().(*goqu.SelectDataset).Dialect()) // nolint:forcetypeassert
 	})
 
 	ids.Run("panic, insert and select dialects are different", func() {
@@ -241,7 +241,7 @@ func (ids *insertDatasetSuite) TestFromQueryDialectInheritance() {
 			}
 			ids.Require().Equal(
 				"incompatible dialects for INSERT (\"dialect\") and SELECT (\"other_dialect\")",
-				r.(error).Error(),
+				r.(error).Error(), // nolint:forcetypeassert
 			)
 		}()
 
@@ -559,7 +559,7 @@ func (ids *insertDatasetSuite) TestToSQL_ReturnedError() {
 	sqlB := sb.NewSQLBuilder(false)
 	ee := errors.New("expected error")
 	md.On("ToInsertSQL", sqlB, c).Run(func(args mock.Arguments) {
-		args.Get(0).(sb.SQLBuilder).SetError(ee)
+		args.Get(0).(sb.SQLBuilder).SetError(ee) // nolint:forcetypeassert
 	}).Once()
 
 	insertSQL, args, err := ds.ToSQL()
@@ -604,7 +604,7 @@ func (ids *insertDatasetSuite) TestSetError() {
 	c := ds.GetClauses()
 	sqlB := sb.NewSQLBuilder(false)
 	md.On("ToInsertSQL", sqlB, c).Run(func(args mock.Arguments) {
-		args.Get(0).(sb.SQLBuilder).SetError(err3)
+		args.Get(0).(sb.SQLBuilder).SetError(err3) // nolint:forcetypeassert
 	}).Once()
 
 	sql, args, err = ds.ToSQL()

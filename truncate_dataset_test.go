@@ -4,13 +4,13 @@ import (
 	"testing"
 
 	"github.com/DATA-DOG/go-sqlmock"
-	"github.com/doug-martin/goqu/v9"
-	"github.com/doug-martin/goqu/v9/exp"
-	"github.com/doug-martin/goqu/v9/internal/errors"
-	"github.com/doug-martin/goqu/v9/internal/sb"
-	"github.com/doug-martin/goqu/v9/mocks"
 	"github.com/stretchr/testify/mock"
 	"github.com/stretchr/testify/suite"
+	"github.com/yz89122/goqu/v10"
+	"github.com/yz89122/goqu/v10/exp"
+	"github.com/yz89122/goqu/v10/internal/errors"
+	"github.com/yz89122/goqu/v10/internal/sb"
+	"github.com/yz89122/goqu/v10/mocks"
 )
 
 type (
@@ -256,7 +256,7 @@ func (tds *truncateDatasetSuite) TestToSQL_withError() {
 	ee := errors.New("expected error")
 	sqlB := sb.NewSQLBuilder(false)
 	md.On("ToTruncateSQL", sqlB, c).Run(func(args mock.Arguments) {
-		args.Get(0).(sb.SQLBuilder).SetError(ee)
+		args.Get(0).(sb.SQLBuilder).SetError(ee) // nolint:forcetypeassert
 	}).Once()
 
 	sql, args, err := ds.ToSQL()
@@ -326,7 +326,7 @@ func (tds *truncateDatasetSuite) TestSetError() {
 	c := ds.GetClauses()
 	sqlB := sb.NewSQLBuilder(false)
 	md.On("ToTruncateSQL", sqlB, c).Run(func(args mock.Arguments) {
-		args.Get(0).(sb.SQLBuilder).SetError(err3)
+		args.Get(0).(sb.SQLBuilder).SetError(err3) // nolint:forcetypeassert
 	}).Once()
 
 	sql, args, err = ds.ToSQL()

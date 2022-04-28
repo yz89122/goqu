@@ -19,7 +19,7 @@ func NewSQLWindowFunctionExpression(
 
 func (swfe sqlWindowFunctionExpression) clone() sqlWindowFunctionExpression {
 	return sqlWindowFunctionExpression{
-		fn:         swfe.fn.Clone().(SQLFunctionExpression),
+		fn:         swfe.fn.Clone().(SQLFunctionExpression), // nolint:forcetypeassert
 		windowName: swfe.windowName,
 		window:     swfe.window,
 	}

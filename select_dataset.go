@@ -4,10 +4,10 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/doug-martin/goqu/v9/exec"
-	"github.com/doug-martin/goqu/v9/exp"
-	"github.com/doug-martin/goqu/v9/internal/errors"
-	"github.com/doug-martin/goqu/v9/internal/sb"
+	"github.com/yz89122/goqu/v10/exec"
+	"github.com/yz89122/goqu/v10/exp"
+	"github.com/yz89122/goqu/v10/internal/errors"
+	"github.com/yz89122/goqu/v10/internal/sb"
 )
 
 // Dataset for creating and/or executing SELECT SQL statements.
@@ -117,7 +117,7 @@ func (sd *SelectDataset) Update() *UpdateDataset {
 	}
 	if sd.clauses.HasOrder() {
 		for _, oe := range sd.clauses.Order().Columns() {
-			c = c.OrderAppend(oe.(exp.OrderedExpression))
+			c = c.OrderAppend(oe.(exp.OrderedExpression)) // nolint:forcetypeassert
 		}
 	}
 	u.clauses = c
@@ -160,7 +160,7 @@ func (sd *SelectDataset) Delete() *DeleteDataset {
 	}
 	if sd.clauses.HasOrder() {
 		for _, oe := range sd.clauses.Order().Columns() {
-			c = c.OrderAppend(oe.(exp.OrderedExpression))
+			c = c.OrderAppend(oe.(exp.OrderedExpression)) // nolint:forcetypeassert
 		}
 	}
 	d.clauses = c

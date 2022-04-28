@@ -1,6 +1,6 @@
-module github.com/doug-martin/goqu/v9
+module github.com/yz89122/goqu/v10
 
-go 1.12
+go 1.16
 
 require (
 	github.com/DATA-DOG/go-sqlmock v1.5.0
