@@ -3,8 +3,8 @@ package sqlgen_test
 import (
 	"testing"
 
-	"github.com/doug-martin/goqu/v9/sqlgen"
 	"github.com/stretchr/testify/suite"
+	"github.com/yz89122/goqu/v10/sqlgen"
 )
 
 type sqlFragmentTypeSuite struct {

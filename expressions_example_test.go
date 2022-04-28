@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"regexp"
 
-	"github.com/doug-martin/goqu/v9"
-	"github.com/doug-martin/goqu/v9/exp"
+	"github.com/yz89122/goqu/v10"
+	"github.com/yz89122/goqu/v10/exp"
 )
 
 func ExampleAVG() {

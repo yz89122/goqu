@@ -5,7 +5,7 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/doug-martin/goqu/v9/internal/tag"
+	"github.com/yz89122/goqu/v10/internal/tag"
 )
 
 type (

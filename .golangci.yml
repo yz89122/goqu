@@ -78,7 +78,6 @@ linters:
     - gocyclo
     - gofmt
     - goimports
-    - golint
     - gomnd
     - goprintffuncname
     - gosec
@@ -95,6 +94,7 @@ linters:
     - nolintlint
     - prealloc
     - predeclared
+    - revive
     - rowserrcheck
     - staticcheck
     - structcheck

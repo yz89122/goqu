@@ -8,15 +8,15 @@ goqu an idiomatch SQL builder, and query package.
      |___/          |_|
 
 
-Please see https://github.com/doug-martin/goqu for an introduction to goqu.
+Please see https://github.com/yz89122/goqu/v10 for an introduction to goqu.
 */
 package goqu
 
 import (
 	"time"
 
-	"github.com/doug-martin/goqu/v9/internal/util"
-	"github.com/doug-martin/goqu/v9/sqlgen"
+	"github.com/yz89122/goqu/v10/internal/util"
+	"github.com/yz89122/goqu/v10/sqlgen"
 )
 
 type DialectWrapper struct {

@@ -7,9 +7,9 @@ import (
 	"testing"
 
 	"github.com/DATA-DOG/go-sqlmock"
-	"github.com/doug-martin/goqu/v9"
-	"github.com/doug-martin/goqu/v9/internal/errors"
 	"github.com/stretchr/testify/suite"
+	"github.com/yz89122/goqu/v10"
+	"github.com/yz89122/goqu/v10/internal/errors"
 )
 
 type testActionItem struct {

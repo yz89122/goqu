@@ -11,16 +11,25 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        go_version: ["1.15", "1.16", "latest"]
+        go_version: ["1.16", "1.17", "1.18", "latest"]
         db_versions:
-          - mysql_version: 5
-            postgres_version: 9.6
+          - mysql_version: "5"
+            postgres_version: "9"
             sqlserver_version: "2017-CU8-ubuntu"
-          - mysql_version: 5
-            postgres_version: "10.10"
+          - mysql_version: "5"
+            postgres_version: "10"
             sqlserver_version: "2017-CU8-ubuntu"
-          - mysql_version: 8
-            postgres_version: 11.5
+          - mysql_version: "8"
+            postgres_version: "11"
+            sqlserver_version: "2017-CU8-ubuntu"
+          - mysql_version: "8"
+            postgres_version: "12"
+            sqlserver_version: "2017-CU8-ubuntu"
+          - mysql_version: "8"
+            postgres_version: "13"
+            sqlserver_version: "2017-CU8-ubuntu"
+          - mysql_version: "8"
+            postgres_version: "14"
             sqlserver_version: "2017-CU8-ubuntu"
     env:
       GO_VERSION: ${{ matrix.go_version }}
