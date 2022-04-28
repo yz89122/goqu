@@ -59,7 +59,7 @@ func (gis *githubIssuesSuite) TestIssue115() {
 // Test for https://github.com/yz89122/goqu/v10/issues/118
 func (gis *githubIssuesSuite) TestIssue118_withEmbeddedStructWithoutExportedFields() {
 	// struct is in a custom package
-	type SimpleRole struct {
+	type SimpleRole struct { // nolint:gocritic
 		sync.RWMutex
 		permissions []string // nolint:structcheck,unused //needed for test
 	}
@@ -129,7 +129,7 @@ func (gis *githubIssuesSuite) TestIssue118_withEmbeddedStructWithoutExportedFiel
 // Test for https://github.com/yz89122/goqu/v10/issues/118
 func (gis *githubIssuesSuite) TestIssue118_withNilEmbeddedStructWithExportedFields() {
 	// struct is in a custom package
-	type SimpleRole struct {
+	type SimpleRole struct { // nolint:gocritic
 		sync.RWMutex
 		permissions []string // nolint:structcheck,unused // needed for test
 		IDStr       string

@@ -256,7 +256,7 @@ func (tds *truncateDatasetSuite) TestToSQL_withError() {
 	ee := errors.New("expected error")
 	sqlB := sb.NewSQLBuilder(false)
 	md.On("ToTruncateSQL", sqlB, c).Run(func(args mock.Arguments) {
-		args.Get(0).(sb.SQLBuilder).SetError(ee)
+		args.Get(0).(sb.SQLBuilder).SetError(ee) // nolint:forcetypeassert
 	}).Once()
 
 	sql, args, err := ds.ToSQL()
@@ -326,7 +326,7 @@ func (tds *truncateDatasetSuite) TestSetError() {
 	c := ds.GetClauses()
 	sqlB := sb.NewSQLBuilder(false)
 	md.On("ToTruncateSQL", sqlB, c).Run(func(args mock.Arguments) {
-		args.Get(0).(sb.SQLBuilder).SetError(err3)
+		args.Get(0).(sb.SQLBuilder).SetError(err3) // nolint:forcetypeassert
 	}).Once()
 
 	sql, args, err = ds.ToSQL()

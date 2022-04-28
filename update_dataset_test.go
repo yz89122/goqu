@@ -429,7 +429,7 @@ func (uds *updateDatasetSuite) TestToSQL_WithError() {
 	sqlB := sb.NewSQLBuilder(false)
 	ee := errors.New("expected error")
 	md.On("ToUpdateSQL", sqlB, c).Run(func(args mock.Arguments) {
-		args.Get(0).(sb.SQLBuilder).SetError(ee)
+		args.Get(0).(sb.SQLBuilder).SetError(ee) // nolint:forcetypeassert
 	}).Once()
 
 	updateSQL, args, err := ds.Set(goqu.Record{"c": "a"}).ToSQL()
@@ -501,7 +501,7 @@ func (uds *updateDatasetSuite) TestSetError() {
 	c := ds.GetClauses()
 	sqlB := sb.NewSQLBuilder(false)
 	md.On("ToUpdateSQL", sqlB, c).Run(func(args mock.Arguments) {
-		args.Get(0).(sb.SQLBuilder).SetError(err3)
+		args.Get(0).(sb.SQLBuilder).SetError(err3) // nolint:forcetypeassert
 	}).Once()
 
 	sql, args, err = ds.ToSQL()

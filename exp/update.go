@@ -57,7 +57,7 @@ func (u update) Expression() Expression {
 }
 
 func (u update) Clone() Expression {
-	return update{col: u.col.Clone().(IdentifierExpression), val: u.val}
+	return update{col: u.col.Clone().(IdentifierExpression), val: u.val} // nolint:forcetypeassert
 }
 
 func (u update) Col() IdentifierExpression {

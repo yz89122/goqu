@@ -26,8 +26,8 @@ func (we sqlWindowExpression) clone() sqlWindowExpression {
 	return sqlWindowExpression{
 		name:          we.name,
 		parent:        we.parent,
-		partitionCols: we.partitionCols.Clone().(ColumnListExpression),
-		orderCols:     we.orderCols.Clone().(ColumnListExpression),
+		partitionCols: we.partitionCols.Clone().(ColumnListExpression), // nolint:forcetypeassert
+		orderCols:     we.orderCols.Clone().(ColumnListExpression),     // nolint:forcetypeassert
 	}
 }
 

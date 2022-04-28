@@ -132,9 +132,9 @@ func (i identifier) As(val interface{}) AliasedExpression {
 		}
 		aliasCol := ident.GetCol()
 		if i.table != "" {
-			return NewAliasExpression(i, NewIdentifierExpression("", aliasCol.(string), nil))
+			return NewAliasExpression(i, NewIdentifierExpression("", aliasCol.(string), nil)) // nolint:forcetypeassert
 		} else if i.schema != "" {
-			return NewAliasExpression(i, NewIdentifierExpression(aliasCol.(string), "", nil))
+			return NewAliasExpression(i, NewIdentifierExpression(aliasCol.(string), "", nil)) // nolint:forcetypeassert
 		}
 	}
 	return NewAliasExpression(i, val)

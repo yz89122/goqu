@@ -211,7 +211,7 @@ func (esg *expressionSQLGenerator) expressionSQL(b sb.SQLBuilder, expression exp
 func (esg *expressionSQLGenerator) placeHolderSQL(b sb.SQLBuilder, i interface{}) {
 	b.Write(esg.dialectOptions.PlaceHolderFragment)
 	if esg.dialectOptions.IncludePlaceholderNum {
-		b.WriteStrings(strconv.FormatInt(int64(b.CurrentArgPosition()), 10))
+		b.WriteStrings(strconv.FormatInt(int64(b.CurrentArgPosition()), 10)) // nolint:gomnd
 	}
 	b.WriteArg(i)
 }
@@ -314,7 +314,7 @@ func (esg *expressionSQLGenerator) literalFloat(b sb.SQLBuilder, f float64) {
 		esg.placeHolderSQL(b, f)
 		return
 	}
-	b.WriteStrings(strconv.FormatFloat(f, 'f', -1, 64))
+	b.WriteStrings(strconv.FormatFloat(f, 'f', -1, 64)) // nolint:gomnd
 }
 
 // Generates SQL for an int value
@@ -323,7 +323,7 @@ func (esg *expressionSQLGenerator) literalInt(b sb.SQLBuilder, i int64) {
 		esg.placeHolderSQL(b, i)
 		return
 	}
-	b.WriteStrings(strconv.FormatInt(i, 10))
+	b.WriteStrings(strconv.FormatInt(i, 10)) // nolint:gomnd
 }
 
 // Generates SQL for a string

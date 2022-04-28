@@ -48,7 +48,7 @@ func (c conflictUpdate) Clone() Expression {
 	return &conflictUpdate{
 		target:      c.target,
 		update:      c.update,
-		whereClause: c.whereClause.Clone().(ExpressionList),
+		whereClause: c.whereClause.Clone().(ExpressionList), // nolint:forcetypeassert
 	}
 }
 

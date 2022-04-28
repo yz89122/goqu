@@ -76,9 +76,10 @@ func (cl columnList) Columns() []Expression {
 }
 
 func (cl columnList) Append(cols ...Expression) ColumnListExpression {
-	ret := columnList{}
-	exps := append(ret.columns, cl.columns...)
-	exps = append(exps, cols...)
-	ret.columns = exps
+	ret := columnList{
+		columns: make([]Expression, 0, len(cl.columns)+len(cols)),
+	}
+	ret.columns = append(ret.columns, cl.columns...)
+	ret.columns = append(ret.columns, cols...)
 	return ret
 }

@@ -117,7 +117,7 @@ func (sd *SelectDataset) Update() *UpdateDataset {
 	}
 	if sd.clauses.HasOrder() {
 		for _, oe := range sd.clauses.Order().Columns() {
-			c = c.OrderAppend(oe.(exp.OrderedExpression))
+			c = c.OrderAppend(oe.(exp.OrderedExpression)) // nolint:forcetypeassert
 		}
 	}
 	u.clauses = c
@@ -160,7 +160,7 @@ func (sd *SelectDataset) Delete() *DeleteDataset {
 	}
 	if sd.clauses.HasOrder() {
 		for _, oe := range sd.clauses.Order().Columns() {
-			c = c.OrderAppend(oe.(exp.OrderedExpression))
+			c = c.OrderAppend(oe.(exp.OrderedExpression)) // nolint:forcetypeassert
 		}
 	}
 	d.clauses = c

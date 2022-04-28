@@ -75,7 +75,7 @@ func (je conditionedJoin) IsConditionEmpty() bool {
 func (jes JoinExpressions) Clone() JoinExpressions {
 	ret := make(JoinExpressions, 0, len(jes))
 	for _, jc := range jes {
-		ret = append(ret, jc.Clone().(JoinExpression))
+		ret = append(ret, jc.Clone().(JoinExpression)) // nolint:forcetypeassert
 	}
 	return ret
 }

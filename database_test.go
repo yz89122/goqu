@@ -202,10 +202,10 @@ func (ds *databaseSuite) TestQuery() {
 		WillReturnError(errors.New("mock error"))
 
 	db := goqu.New("mock", mDB)
-	_, err = db.Query(`SELECT * FROM "items"`)
+	_, err = db.Query(`SELECT * FROM "items"`) // nolint:rowserrcheck
 	ds.NoError(err, "goqu - mock error")
 
-	_, err = db.Query(`SELECT * FROM "items"`)
+	_, err = db.Query(`SELECT * FROM "items"`) // nolint:rowserrcheck
 	ds.EqualError(err, "goqu: mock error")
 }
 
@@ -345,7 +345,7 @@ func (ds *databaseSuite) TestRollbackOnPanic() {
 		if p == nil {
 			ds.Fail("there should be a panic")
 		}
-		ds.Require().Equal("a problem has happened", p.(string))
+		ds.Require().Equal("a problem has happened", p.(string)) // nolint:forcetypeassert
 		ds.Require().NoError(mock.ExpectationsWereMet())
 	}()
 
@@ -662,10 +662,10 @@ func (tds *txdatabaseSuite) TestQuery() {
 	db := goqu.New("mock", mDB)
 	tx, err := db.Begin()
 	tds.NoError(err)
-	_, err = tx.Query(`SELECT * FROM "items"`)
+	_, err = tx.Query(`SELECT * FROM "items"`) // nolint:rowserrcheck
 	tds.NoError(err, "goqu - mock error")
 
-	_, err = tx.Query(`SELECT * FROM "items"`)
+	_, err = tx.Query(`SELECT * FROM "items"`) // nolint:rowserrcheck
 	tds.EqualError(err, "goqu: mock error")
 	tds.NoError(tx.Commit())
 }

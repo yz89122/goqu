@@ -12,7 +12,7 @@ func NewCompoundExpression(ct CompoundType, rhs AppendableExpression) CompoundEx
 func (c compound) Expression() Expression { return c }
 
 func (c compound) Clone() Expression {
-	return compound{t: c.t, rhs: c.rhs.Clone().(AppendableExpression)}
+	return compound{t: c.t, rhs: c.rhs.Clone().(AppendableExpression)} // nolint:forcetypeassert
 }
 
 func (c compound) Type() CompoundType        { return c.t }

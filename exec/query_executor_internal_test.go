@@ -1218,7 +1218,7 @@ func (qes *queryExecutorSuite) TestScanVal_withRawBytes() {
 type JSONBoolArray []bool
 
 func (b *JSONBoolArray) Scan(src interface{}) error {
-	return json.Unmarshal(src.([]byte), b)
+	return json.Unmarshal(src.([]byte), b) // nolint:forcetypeassert
 }
 
 func (qes *queryExecutorSuite) TestScanVal_withValuerSlice() {
